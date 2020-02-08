@@ -1,10 +1,16 @@
 # Azure Notification Hubs Lite
 
+[![Download](https://api.bintray.com/packages/minyushov/azure/azure-notificationhubs-lite/images/download.svg)](https://bintray.com/minyushov/azure/azure-notificationhubs-lite/_latestVersion)
+
 ## Getting Started
 
 ```groovy
+repositories {
+  maven { url  "https://dl.bintray.com/minyushov/azure" }
+}
+
 dependencies {
-  implementation "com.minyushov.azure:notificationhubs-lite:1.0.0"
+  implementation "com.minyushov.azure:azure-notificationhubs-lite:1.0.0"
 }
 ```
 
