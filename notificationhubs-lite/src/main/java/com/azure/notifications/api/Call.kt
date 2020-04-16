@@ -16,7 +16,13 @@ internal suspend fun <T : Any> Call.await(action: (Response) -> T): T =
       override fun onResponse(call: Call, response: Response) {
         if (!continuation.isCancelled) {
           val result = try {
-            Result.success(action(response))
+            Result.success(
+              if (response.body != null) {
+                response.use(action)
+              } else {
+                action(response)
+              }
+            )
           } catch (throwable: Throwable) {
             Result.failure(throwable)
           }
