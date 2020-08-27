@@ -5,14 +5,9 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
-import org.robolectric.annotation.Config
 import java.util.UUID
 
 @RunWith(RobolectricTestRunner::class)
-@Config(
-  sdk = [28],
-  manifest = Config.NONE
-)
 class GetRegistrationTest {
   @Test
   fun success() = apiTest { server ->

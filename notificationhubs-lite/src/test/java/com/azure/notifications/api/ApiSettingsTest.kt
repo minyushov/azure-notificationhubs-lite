@@ -7,13 +7,8 @@ import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
-import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
-@Config(
-  sdk = [28],
-  manifest = Config.NONE
-)
 class ApiSettingsTest {
   @Test
   fun `empty arguments`() = withClient { client ->
