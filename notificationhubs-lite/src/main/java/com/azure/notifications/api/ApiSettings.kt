@@ -27,7 +27,7 @@ internal class ApiSettings(
         val key = parts.getOrElse(0) { "" }.trim()
         val value = parts.getOrElse(1) { "" }.trim()
         if (key.isNotEmpty() && value.isNotEmpty()) {
-          key.toLowerCase(Locale.US) to value
+          key.lowercase(Locale.US) to value
         } else {
           null
         }
@@ -50,5 +50,4 @@ internal class ApiSettings(
           .build()
       }
   }
-
 }

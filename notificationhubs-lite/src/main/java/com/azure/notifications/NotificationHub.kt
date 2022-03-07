@@ -66,5 +66,4 @@ class NotificationHub(
       launch { api.deleteRegistration(registration) }
     }
   }
-
 }

@@ -105,7 +105,7 @@ internal class Api(
       .header("Authorization", createAuthToken(url, Date()))
 
   private fun createAuthToken(path: String, date: Date): String {
-    val url = Uri.encode(path).toLowerCase(Locale.US)
+    val url = Uri.encode(path).lowercase(Locale.US)
 
     val expiresIn = Calendar
       .getInstance(TimeZone.getTimeZone("UTC"))
@@ -137,5 +137,4 @@ internal class Api(
       )
     }
   }
-
 }

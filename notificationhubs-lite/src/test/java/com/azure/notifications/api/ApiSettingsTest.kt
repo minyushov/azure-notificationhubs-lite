@@ -112,5 +112,4 @@ class ApiSettingsTest {
 
   private inline fun withClient(test: (OkHttpClient) -> Unit) =
     test(OkHttpClient())
-
 }
