@@ -39,7 +39,7 @@ internal class Api(
       .newCall(request)
       .await { response ->
         response.validate()
-        response.body?.byteStream()?.parseRegistrations().orEmpty()
+        response.body.byteStream().parseRegistrations()
       }
   }
 
@@ -123,14 +123,14 @@ internal class Api(
   }
 
   private fun getUserAgent(): String =
-    "NOTIFICATIONHUBS/$SDK_VERSION (api-origin=AndroidSdkGcm; os=Android; os_version=${Build.VERSION.RELEASE};)"
+    "NOTIFICATIONHUBS/$SDK_VERSION (api-origin=AndroidSdkFcm; os=Android; os_version=${Build.VERSION.RELEASE};)"
 
   private fun Response.validate() {
     if (!isSuccessful) {
       throw AzureException(
         code = code,
         message = try {
-          body?.byteStream()?.parseError() ?: message
+          body.byteStream().parseError() ?: message
         } catch (throwable: Throwable) {
           message
         }
