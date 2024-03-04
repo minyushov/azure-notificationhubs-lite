@@ -14,8 +14,8 @@ import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 
-private const val SDK_VERSION = "2014-09"
-private const val API_VERSION = "2014-09"
+private const val SDK_VERSION = "2015-01"
+private const val API_VERSION = "2015-01"
 
 internal class Api(
   private val settings: ApiSettings
@@ -25,7 +25,7 @@ internal class Api(
     val url = settings
       .registrationsEndpoint
       .toString()
-      .let { "$it/?\$filter=${URLEncoder.encode("GcmRegistrationId eq '$token'", "UTF-8")}&api-version=$API_VERSION" }
+      .let { "$it/?\$filter=${URLEncoder.encode("GcmRegistrationId eq '$token' or FcmV1RegistrationId eq '$token'", "UTF-8")}&api-version=$API_VERSION" }
 
     val request = Request
       .Builder()
@@ -55,10 +55,10 @@ internal class Api(
     |<?xml version="1.0" encoding="utf-8"?>
     |<entry xmlns="http://www.w3.org/2005/Atom">
     |  <content type="application/xml">
-    |    <GcmRegistrationDescription xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/netservices/2010/10/servicebus/connect">
+    |    <FcmV1RegistrationDescription xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/netservices/2010/10/servicebus/connect">
     |      <Tags>${tags.joinToString(separator = ",")}</Tags>
-    |      <GcmRegistrationId>$token</GcmRegistrationId> 
-    |    </GcmRegistrationDescription>
+    |      <FcmV1RegistrationId>$token</FcmV1RegistrationId> 
+    |    </FcmV1RegistrationDescription>
     |  </content>
     |</entry>
     """.trimMargin()
@@ -123,7 +123,7 @@ internal class Api(
   }
 
   private fun getUserAgent(): String =
-    "NOTIFICATIONHUBS/$SDK_VERSION (api-origin=AndroidSdkFcm; os=Android; os_version=${Build.VERSION.RELEASE};)"
+    "NOTIFICATIONHUBS/$SDK_VERSION (api-origin=AndroidSdkFcmV1; os=Android; os_version=${Build.VERSION.RELEASE};)"
 
   private fun Response.validate() {
     if (!isSuccessful) {
