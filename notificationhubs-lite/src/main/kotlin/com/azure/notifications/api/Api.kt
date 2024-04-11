@@ -25,7 +25,7 @@ internal class Api(
     val url = settings
       .registrationsEndpoint
       .toString()
-      .let { "$it/?\$filter=${URLEncoder.encode("GcmRegistrationId eq '$token' or FcmV1RegistrationId eq '$token'", "UTF-8")}&api-version=$API_VERSION" }
+      .let { "$it/?\$filter=${URLEncoder.encode("GcmRegistrationId eq '$token'", "UTF-8")}&api-version=$API_VERSION" }
 
     val request = Request
       .Builder()

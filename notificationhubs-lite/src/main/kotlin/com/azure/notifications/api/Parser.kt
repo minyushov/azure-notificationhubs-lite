@@ -16,16 +16,21 @@ internal fun InputStream.parseRegistrations(): List<String> =
     parser.use {
       find("entry") {
         find("content") {
-          find("GcmRegistrationDescription") {
-            when (name) {
-              "RegistrationId" -> {
-                val value = text()
-                if (!value.isNullOrEmpty()) {
-                  registrations.add(value)
+          when (name) {
+            "GcmRegistrationDescription",
+            "FcmV1RegistrationDescription" ->
+              use {
+                when (name) {
+                  "RegistrationId" -> {
+                    val value = text()
+                    if (!value.isNullOrEmpty()) {
+                      registrations.add(value)
+                    }
+                  }
+                  else -> skip()
                 }
               }
-              else -> skip()
-            }
+            else -> skip()
           }
         }
       }
