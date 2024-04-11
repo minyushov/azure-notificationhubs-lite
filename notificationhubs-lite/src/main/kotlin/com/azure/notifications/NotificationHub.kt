@@ -4,7 +4,6 @@ import com.azure.notifications.api.Api
 import com.azure.notifications.api.ApiSettings
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 
@@ -62,8 +61,9 @@ class NotificationHub(
     token: String,
     dispatcher: CoroutineDispatcher = Dispatchers.IO
   ) = withContext(dispatcher) {
-    api.getRegistrations(token).forEach { registration ->
-      launch { api.deleteRegistration(registration) }
-    }
+    api
+      .getRegistrations(token)
+      .distinct()
+      .forEach { api.deleteRegistration(it) }
   }
 }
