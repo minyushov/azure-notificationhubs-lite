@@ -64,7 +64,6 @@ internal fun `error without description`(call: suspend Api.() -> Unit) = apiTest
   Assert.assertEquals(errorMessage, exception.message)
 }
 
-@Suppress("BlockingMethodInNonBlockingContext")
 internal fun apiTest(action: suspend Api.(MockWebServer) -> Unit) = runBlocking {
   val server = MockWebServer()
 

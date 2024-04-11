@@ -4,7 +4,7 @@ buildscript {
     androidCompileSdkVersion = 34
     androidTargetSdkVersion = 33
     androidBuildToolsVersion = "34.0.0"
-    kotlinVersion = "1.9.22"
+    kotlinVersion = "1.9.23"
   }
 
   repositories {
@@ -13,7 +13,7 @@ buildscript {
   }
 
   dependencies {
-    classpath "com.android.tools.build:gradle:8.4.0-alpha12"
+    classpath "com.android.tools.build:gradle:8.5.0-alpha04"
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
   }
 }
